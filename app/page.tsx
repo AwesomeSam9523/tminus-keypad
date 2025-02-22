@@ -6,7 +6,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [pressedButton, setPressedButton] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
-  const correctPassword = process.env.NEXT_PUBLIC_LEVEL_1 || "";
+  const correctPassword = process.env.NEXT_PUBLIC_LEVEL_1?.split(",") || [""];
 
   const handleButtonPress = (value: string) => {
     setPressedButton(value)
@@ -34,7 +34,7 @@ export default function Home() {
       setPassword(newPassword);
       setCurrentIndex(currentIndex + 1);
 
-      if (newPassword.join("") === correctPassword) {
+      if (correctPassword.includes(newPassword.join(""))) {
         setIsCorrect(true);
       }
     }
